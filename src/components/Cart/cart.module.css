@@ -1,0 +1,116 @@
+.main{
+    
+    margin-top: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 15rem;
+    margin-right: 15rem;
+}
+.div1{
+  
+    padding: 2rem;
+}
+.items{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    width: 40vw;
+    padding: 0.3rem;
+
+}
+.items>:nth-child(1){
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+.div2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  
+    padding: 0.5rem;
+}
+.div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    border-bottom: 1px lightgrey solid;
+   
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0.6rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    
+    
+}
+.container>:nth-child(1){
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+.container>:nth-child(2){
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+.container>:nth-child(3){
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+.container>:nth-child(4){
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+
+
+.div3{
+    
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0.5rem;
+    width: 20vw;
+}
+.div3>:nth-child(1){
+    font-size: 1.5rem;
+    font-weight: 700;
+
+}
+.div4{
+    display: flex;
+    align-items: flex-start;
+    justify-content:flex-start;
+    flex-direction: column;
+    gap: 2rem;
+}
+.img{
+    width: 20rem;
+    height: 16rem;
+    border-radius: 20px;
+    
+}
+.remove{
+    width: 10rem;
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: rgb(138, 6, 6);
+    padding: 0.2rem;
+    color:white;
+    border-radius: 20px;
+    border: none;
+}
+.remove:hover{
+    transform: scale(1.1);
+}

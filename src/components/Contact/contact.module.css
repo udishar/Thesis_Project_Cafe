@@ -1,0 +1,31 @@
+.main{
+    
+    height: 99vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.second{
+    
+    text-align: center;
+    
+}
+.second>:nth-child(1){
+    color:red;
+}
+.link{
+display: flex;
+align-items: center;
+justify-content: center;
+gap:2rem;
+font-size: 1.5rem;
+
+}
+.link>a{
+    color: rgb(155, 5, 5);
+    text-decoration: none;
+}
+.link>a:hover{
+    color: black;
+    transform: scale(1.1);
+}

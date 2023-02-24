@@ -1,0 +1,35 @@
+.container {
+  margin-top: 8rem;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+.img {
+  width: 20rem;
+  height: 16rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border-bottom:3px black solid;
+}
+.data {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Gloock", serif;
+  
+  border-radius: 20px;
+  padding: 0.4rem;
+}
+.img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}

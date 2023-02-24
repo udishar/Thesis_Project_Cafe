@@ -1,0 +1,35 @@
+.footer {
+  
+  
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 6rem;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right, #decba4, #3e5151);
+  width: 100%;
+  
+}
+.footer>span{
+  margin-top: 0.3rem;
+}
+.social {
+  font-size: 1.8rem;
+  display: flex;
+  gap: 1rem;
+}
+.social >a {
+  color:  rgb(179, 7, 10);
+  cursor: pointer;
+}
+.head {
+  /* font-family: "Style Script", cursive; */
+  font-family: "Great Vibes", cursive;
+  font-size: 1.1rem;
+  flex: 1;
+}
+.head:hover {
+  color:  rgb(203, 6, 12);
+  cursor: pointer;
+}
