@@ -7,35 +7,28 @@ import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import { useNavigate } from "react-router-dom";
 import { LoggedIn } from "../../recoil/atom";
-import {  useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 
 export default function FoodItems() {
-  const Variety = Items;
   const [searchItems] = useSearchParams();
-  const [data, setData] = useState(Variety);
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
   const Login = useRecoilValue(LoggedIn);
- 
 
   useEffect(() => {
-    let clickedIndex = Variety.filter(
-      (ele) => ele.itemId == searchItems.get("itemId")
+    let clickedIndex = Items.filter(
+      (ele) => ele.category == searchItems.get("category")
     );
     setData(clickedIndex);
   }, []);
-  
-  function handleClick(item,index) {
-    
-    
-  
+
+  function handleClick(item, index) {
     if (Login) {
       navigate(`/order?id=${item.id}`);
     } else {
       navigate("/login");
     }
-
   }
-  
 
   return (
     <div className={style.container}>
@@ -51,7 +44,8 @@ export default function FoodItems() {
           <span> {item.name}</span>
           <span>
             {" "}
-            <span style={{ color: "red" }}>$</span> {item.price}
+            <span style={{ color: "red" }}>$</span>{" "}
+            {typeof item.price === "object" ? item?.price?.small : item?.price}
           </span>
           <span>
             {item.ratings} <AiFillStar />{" "}

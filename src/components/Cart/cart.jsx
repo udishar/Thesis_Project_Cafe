@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../molecules/customButton/button";
 import Header from "../Header/header";
 import style from "./cart.module.css";
@@ -6,23 +6,20 @@ import { userOrder } from "../../recoil/atom";
 import { useRecoilState } from "recoil";
 
 export default function Cart() {
-  const[order,setOrder] = useRecoilState(userOrder);
-  console.log(order);
- 
-  function handleRemove(cartId){
-    
-    const filteredItem=order.filter((ele=>ele.cartId !== cartId))
+  const [order, setOrder] = useRecoilState(userOrder);
+  const [netAmount, setNetAmount] = useState(0);
 
-         setOrder(filteredItem)
+  useEffect(() => {
+    const netAmount = order?.reduce((acc, item) => acc + item?.totalAmount, 0);
+    setNetAmount(netAmount);
+  }, [order]);
+
+  console.log("netAmount ", netAmount);
+
+  function handleRemove(cartId) {
+    const filteredItem = order.filter((ele) => ele.cartId !== cartId);
+    setOrder(filteredItem);
   }
-  // var formatter = new Intl.NumberFormat("en-US", {
-  //   style: "currency",
-  //   currency: "INR",
-
-  //   // These options are needed to round to whole numbers if that's what you want.
-  //   minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-  //   //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-  // });
 
   const loadScript = (src) => {
     return new Promise((resovle) => {
@@ -41,8 +38,7 @@ export default function Cart() {
     });
   };
 
-
-  async function displayRazorPay(){
+  async function displayRazorPay() {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -72,9 +68,7 @@ export default function Cart() {
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
-  
   }
-
 
   return (
     <div>
@@ -85,22 +79,20 @@ export default function Cart() {
             <span>Items</span>
           </div>
           <div className={style.div2}>
-            {order.map((element , index) => (
-              <div className={style.div} key={element.itemKey.id}>
+            {order.map((element, index) => (
+              <div className={style.div} key={element?.id}>
                 <div>
-                  <img src={element.itemKey.imgSrc} className={style.img} />
+                  <img src={element.img} className={style.img} />
                 </div>
 
                 <div className={style.container}>
-                  <span>{element.itemKey.name}</span>
-                  <span> $ {element.totalPrice}</span>
-                  <span>Quantity: {element.Quantity}</span>
-                  {element.Size !== "undefined" ? (
-                    <span>{element.Size}</span>
-                  ) : (
-                    ""
-                  )}
-                  <Button text="Remove"  onClick={()=>handleRemove(element.cartId)} className={style.remove}/>
+                  <span>{element?.name}</span>
+                  <span> $ {element.totalAmount}</span>
+                  <Button
+                    text="Remove"
+                    onClick={() => handleRemove(element.cartId)}
+                    className={style.remove}
+                  />
                 </div>
               </div>
             ))}
@@ -112,10 +104,10 @@ export default function Cart() {
             <span>Price</span>
             <span>discount</span>
             <span>Dilevery charges</span>
-            <span>Total</span>
+            <span>Net Amount - {netAmount}</span>
           </div>
           <span>Safe and secure pay</span>
-          <Button text="Check Out"  onClick={()=>displayRazorPay()}/>
+          <Button text="Check Out" onClick={() => displayRazorPay()} />
         </div>
       </div>
     </div>

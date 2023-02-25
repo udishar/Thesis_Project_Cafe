@@ -7,8 +7,8 @@ export default function Menu() {
   const Categories = MenuItems;
   const navigate = useNavigate();
 
-  function HandleClick(index) {
-    navigate(`/items?itemId=${index.itemId}`);
+  function HandleClick(item) {
+    navigate(`/items?category=${item.category}`);
   }
 
   return (
@@ -23,7 +23,7 @@ export default function Menu() {
           <div
             className={style.data}
             key={items.itemId}
-            onClick={() => HandleClick(items, index)}
+            onClick={() => HandleClick(items)}
           >
             <span>{items.name}</span>
             <img src={items.imgSrc} className={style.img} />

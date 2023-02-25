@@ -5,7 +5,7 @@ import { AiFillHome } from "react-icons/ai";
 import { BiFoodMenu } from "react-icons/bi";
 import { BsTelephoneFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { LoggedIn, UserDetail ,userOrder} from "../../recoil/atom";
+import { LoggedIn, UserDetail, userOrder } from "../../recoil/atom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
@@ -14,8 +14,8 @@ export default function Header() {
   const [login, setLogin] = useRecoilState(LoggedIn);
   const detail = useRecoilValue(UserDetail);
   const [anchorEl, setAnchorEl] = useState(null);
-   const addedElement=useRecoilValue(userOrder)
-  
+  const addedElement = useRecoilValue(userOrder);
+
   const navigate = useNavigate();
   function HandleLogo() {
     navigate("/");
@@ -42,14 +42,14 @@ export default function Header() {
       return "Login";
     }
   }
-  function handleClose(){
+  function handleClose() {
     setAnchorEl(null);
   }
-  function handleContact(){
-    navigate("/contact")
+  function handleContact() {
+    navigate("/contact");
   }
-  function handleClick(){
-    navigate("/cart")
+  function handleClick() {
+    navigate("/cart");
   }
 
   //  function HandleMenu(){
@@ -78,7 +78,7 @@ export default function Header() {
 
       <div className={style.right}>
         <div className={style.icon}>
-          <h4 onClick={() => HandleLogin()}>{btnName()}</h4>
+          {/* <h4 onClick={() => HandleLogin()}>{btnName()}</h4> */}
           <Popover
             open={open}
             anchorEl={anchorEl}
