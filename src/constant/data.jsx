@@ -51,7 +51,7 @@ const Items = [
       "https://images.pexels.com/photos/8411360/pexels-photo-8411360.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load",
     name: "Burger Bistro",
     ratings: 5,
-    price: { small: 11, medium: 22, large: 33 },
+    price: 11,
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,",
   },
