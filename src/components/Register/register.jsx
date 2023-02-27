@@ -28,69 +28,69 @@ export default function Register() {
   const [PasswordMessage, setPasswordMessage] = useState("");
   const [AddressMessage, setAddressMessage] = useState("");
   const [LandmarkMessage, setLandmarkMessage] = useState("");
-  const [PhoneNumberMessage,setPhoneNumberMessage]=useState("")
+  const [PhoneNumberMessage, setPhoneNumberMessage] = useState("");
   const [userData, setUserData] = useRecoilState(UserDetail);
   const navigate = useNavigate();
 
-  let ValidEmail = isValidEmail(email);
-  let ValidFirstName = isValidFirstName(firstName);
-  let ValidLastName = isValidLastName(lastName);
-  let ValidPassword = isValidPass(password);
-  let ValidPhoneNumber = isValidphoneNumber(phoneNumber);
+
 
   function handleClick(e) {
     e.preventDefault();
-    if (
-      ValidEmail == "Valid Email" &&
-      ValidFirstName == "Valid First Name" &&
-      ValidLastName == "Valid Last Name" &&
-      ValidPassword == "Valid Password" &&
-      ValidPhoneNumber == "Valid phoneNumber number"
-    ) {
-      setUserData([
-        ...userData,
-        {
-          Email: email,
-          FirstName: firstName,
-          LastName: lastName,
-          PhoneNumber: phoneNumber,
-          Password: password,
-          Landmark: landmark,
-          Address: address,
-        },
-      ]);
 
-      Swal.fire("You are Successfully Registered");
-      navigate("/login");
-      setFirstNameMessage("")
-      setLastNameMessage("")
-      setEmailMessage("")
-      setPhoneNumberMessage("")
-      setAddressMessage("")
-      setLandmarkMessage("")
-      setPasswordMessage("")
-    } else if (
-      ValidEmail == "Invalid email" &&
-      ValidFirstName ==
-        "Invalid first name! Your first name must only contain alphabets and should be less than or equal to 20 characters." &&
-      ValidLastName ==
-        "Invalid last name! Your last name must only contain alphabets and should be less than or equal to 20 characters." &&
-      ValidPassword == "Invalid Password" &&
-      ValidPhoneNumber == "Invalid phoneNumber number"
+    if (
+      firstName &&
+      lastName &&
+      email &&
+      address &&
+      landmark &&
+      password &&
+      phoneNumber
     ) {
-      setFirstNameMessage("Invalid first name! Your first name must only contain alphabets and should be less than or equal to 20 characters.")
-      setLastNameMessage("Invalid last name! Your last name must only contain alphabets and should be less than or equal to 20 characters.")
-      setEmailMessage("Invalid email")
-      setPasswordMessage("Invalid Password")
-      setPhoneNumberMessage("Invalid phoneNumber number")
-    } else if (ValidEmail=="Enter Email" && ValidFirstName =="Enter your first name" && ValidLastName=="Enter your last name" && ValidPassword=="Enter Password" && ValidPhoneNumber=="Enter Phone Number" && address=="" && landmark=="") {
-      setFirstNameMessage("Enter First Name")
-      setLastNameMessage("Enter Last Name")
-      setAddressMessage("Enter  Address ")
-      setLandmarkMessage("Enter Landmark")
-      setPasswordMessage("Enter Password ")
-      setPhoneNumberMessage("Enter Phone Number")
-      setEmailMessage("Enter Email")
+      let check = true;
+
+      if (!isValidFirstName(firstName)) {
+        setFirstNameMessage(
+          "Invalid first name! Your first name must only contain alphabets and should be less than or equal to 20 characters."
+        );
+        check = false;
+      } else setFirstNameMessage("");
+      if (!isValidLastName(lastName)) {
+        setLastNameMessage(
+          "Invalid first name! Your first name must only contain alphabets and should be less than or equal to 20 characters."
+        );
+        check = false;
+      } else setLastNameMessage("");
+      if (!isValidEmail(email)) {
+        setEmailMessage("Invalid email");
+        check = false;
+      } else setEmailMessage("");
+      if (!isValidPass(password)) {
+        setPasswordMessage("Invalid Password");
+        check = false;
+      } else setPasswordMessage("");
+      if (!isValidphoneNumber(phoneNumber)) {
+        setPhoneNumberMessage("Invalid Phone Number");
+        check = false;
+      } else setPhoneNumberMessage("");
+
+      if (check) {
+        setUserData([
+          ...userData,
+          {
+            Email: email,
+            FirstName: firstName,
+            LastName: lastName,
+            PhoneNumber: phoneNumber,
+            Password: password,
+            Landmark: landmark,
+            Address: address,
+          },
+        ]);
+        Swal.fire("You are Successfully Registered");
+        navigate("/login");
+      }
+    } else {
+      Swal.fire("Please Enter all Fields");
     }
   }
 

@@ -121,7 +121,9 @@ export default function Order() {
     const itemIndex = order.findIndex((key) => key?.itemId == item?.id);
 
     //checking if item existed in cart
+    
     if (itemIndex !== -1) {
+      //  if(quantityObj.small>=1 || quantityObj.large>=1 || quantityObj.medium>=1)
       if (item?.category === "pizza") {
         const newOrder = [...order];
         newOrder[itemIndex] = {
@@ -130,9 +132,10 @@ export default function Order() {
           quantityObj: quantityObj,
           totalAmount: totalAmount,
         };
-
+           
         setOrder(newOrder);
       } else {
+        // if(quantity>=1)
         const newOrder = [...order];
         newOrder[itemIndex] = {
           ...order[itemIndex],
@@ -140,12 +143,15 @@ export default function Order() {
           quantity: quantity,
           totalAmount: totalAmount,
         };
+        
         setOrder(newOrder);
       }
-      Swal.fire(`${item.name} has updated in your cart`);
+      Swal.fire(`${item.name} is updated in your cart`);
     } else {
       //if item not found in cart
       if (item?.category === "pizza") {
+        console.log(quantityObj,"hello")
+        if(quantityObj.small>=1 || quantityObj.large>=1 || quantityObj.medium>=1){
         setOrder([
           ...order,
           {
@@ -159,7 +165,10 @@ export default function Order() {
             cartId: nanoid(),
           },
         ]);
-      } else {
+        Swal.fire(`${item.name} is added to your cart`);
+      } else Swal.fire("Please select the quatity first")}
+      else {
+        if(quantity>=1){
         setOrder([
           ...order,
           {
@@ -173,9 +182,12 @@ export default function Order() {
             cartId: nanoid(),
           },
         ]);
-      }
-      Swal.fire(`${item.name} is added to your cart`);
+      
+      Swal.fire(`${item.name} is added to your cart`);}
+      else Swal.fire("Please Select the Quantity first")
     }
+    }
+    
   }
 
   return (

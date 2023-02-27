@@ -1,0 +1,247 @@
+
+
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  height: 5rem;
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  backdrop-filter: blur(20px);
+  width: 100%;
+  z-index: 999;
+}
+header h3 {
+  /* margin-right: 28rem; */
+  padding: 0.3rem;
+  /* font-family: "Great Vibes"; */
+  /* font-family: "Gloock", serif; */
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  
+}
+header h3:hover {
+  color: rgb(193, 1, 1);
+  cursor: pointer;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  cursor: pointer;
+}
+nav a {
+  /* margin: 2rem; */
+  color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: "Gloock", serif;
+}
+nav a:hover {
+  color: rgb(193, 1, 1);
+  cursor: pointer;
+}
+
+nav h4 {
+  font-size: 1.5rem;
+  font-family: "Gloock", serif;
+ 
+  /* width:6rem; */
+  /* display: flex; */
+
+}
+nav h4:hover {
+  color: rgb(193, 1, 1);
+  cursor: pointer;
+}
+
+.icon1 {
+  font-size: 1.5rem;
+  font-family: "Gloock", serif;
+}
+.icon1:hover {
+  color: rgb(193, 1, 1);
+  cursor: pointer;
+}
+.icon2 {
+  font-size: 1.5rem;
+  font-family: "Gloock", serif;
+  position: relative;
+  
+}
+.icon2:hover {
+  color: rgb(193, 1, 1);
+  cursor: pointer;
+}
+.badge{
+    background-color: rgb(169, 4, 4);
+    color: white;
+   width:20px;
+   height: 18px;
+    font-size: 1rem;
+    border-radius: 50%;
+    position: absolute;
+    top:-0.5rem;
+    right: -0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+header .nav-btn {
+  padding: 0.3rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 1.5rem;
+}
+@media only screen and (max-width: 1024px) {
+    header{
+        padding: 0;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        
+    }
+  header .nav-btn {
+    visibility: visible;
+    opacity: 1;
+    margin-right: 3rem;
+    font-size: 2rem;
+   
+   
+  }
+  header h3{
+    font-size: 3rem;
+    margin: 0;
+  }
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    transition: 1s;
+    transform: translateY(-200vh);
+    background-color: antiquewhite;
+  }
+  header .responsive-nav {
+    transform: none;
+  }
+  nav .nav-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+  nav a {
+    font-size: 3rem;
+  }
+  .home {
+    margin-top: 6rem;
+  }
+  header h4 {
+    font-size: 3rem;
+    margin-top: 1rem;
+  }
+  .icon1 {
+    font-size: 3rem;
+    margin-top: 0;
+  }
+  .icon2 {
+    font-size: 3rem;
+    margin-top: 0;
+  }
+}
+@media (max-width: 553px) {
+    header{
+        padding: 0;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+    }
+  header .nav-btn {
+    visibility: visible;
+    opacity: 1;
+    /* margin-right: 2rem; */
+    margin: 0;
+    
+    font-size: 2rem;
+  }
+  header h3{
+    font-size: 2.2rem;
+    padding: 0;
+    
+  }
+  header h3:hover{
+    color: rgb(172, 8, 8);
+  }
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* width: 100%; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    transition: 1s;
+    transform: translateY(-200vh);
+    background-color: antiquewhite;
+  }
+  header .responsive-nav {
+    transform: none;
+  }
+  nav .nav-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+  nav a {
+    font-size: 1.6rem;
+  }
+  nav a:hover{
+    color: rgb(172, 8, 8);
+  }
+  .home {
+    margin-top: 6rem;
+  }
+  header h4 {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+  }
+  header h4:hover{
+    color: rgb(172, 8, 8);
+  }
+  .icon1 {
+    font-size: 1.6rem;
+    margin-top: 0;
+  }
+  .icon1:hover{
+    color: rgb(172, 8, 8);
+  }
+  .icon2 {
+    font-size: 1.6rem;
+    margin-top: 0;
+  }
+  .icon2:hover{
+    color: rgb(172, 8, 8);
+  }
+}

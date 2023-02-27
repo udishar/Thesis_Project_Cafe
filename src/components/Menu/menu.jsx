@@ -12,7 +12,7 @@ export default function Menu() {
   }
 
   return (
-    <div className={style.container} id="Menu">
+    <div className={style.container}>
       <div className={style.heading}>
         <span>Our Menu</span>
         <span>Menu That Always</span>

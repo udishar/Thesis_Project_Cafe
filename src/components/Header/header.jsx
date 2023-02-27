@@ -1,40 +1,31 @@
-import React, { useState } from "react";
-import style from "./header.module.css";
-import { FaShoppingCart } from "react-icons/fa";
-import { AiFillHome } from "react-icons/ai";
-import { BiFoodMenu } from "react-icons/bi";
-import { BsTelephoneFill } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import React, { useRef } from "react";
+import { FaBars, FaShoppingCart, FaTimes } from "react-icons/fa";
+import "./header.css";
 import { LoggedIn, UserDetail, userOrder } from "../../recoil/atom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import Popover from "@mui/material/Popover";
-import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navRef = useRef();
   const [login, setLogin] = useRecoilState(LoggedIn);
   const detail = useRecoilValue(UserDetail);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
   const addedElement = useRecoilValue(userOrder);
 
-  const navigate = useNavigate();
-  function HandleLogo() {
-    navigate("/");
+  function ShowNavbar() {
+    navRef.current.classList.toggle("responsive-nav");
   }
-  function HandleHome() {
-    navigate("/");
-  }
-  function HandleLogin(e) {
+  function HandleLogin() {
     if (btnName() == "Login") {
       navigate("/login");
     }
     if (
       btnName() == `Welcome, ${detail[0].FirstName + " " + detail[0].LastName}`
     ) {
-      setAnchorEl(e.currentTarget);
+      Swal.fire("Log Out");
+      setLogin(false);
     }
   }
-  const open = Boolean(anchorEl);
-
   function btnName() {
     if (login) {
       return `Welcome, ${detail[0].FirstName + " " + detail[0].LastName}`;
@@ -42,60 +33,31 @@ export default function Header() {
       return "Login";
     }
   }
-  function handleClose() {
-    setAnchorEl(null);
-  }
-  function handleContact() {
-    navigate("/contact");
-  }
-  function handleClick() {
-    navigate("/cart");
-  }
 
-  //  function HandleMenu(){
-  //   navigate("/menu")
-
-  // }
   return (
-    <nav className={style.header}>
-      <div className={style.head} onClick={HandleLogo}>
-        <h1>Udisha's Flavor House</h1>
-      </div>
-      <ul className={style.middle}>
-        <a onClick={HandleHome}>
-          {" "}
-          <AiFillHome /> Home
+    <header>
+      <h3 onClick={() => navigate("/")}>Flavor House</h3>
+      <nav ref={navRef} className="nav">
+        <a onClick={() => navigate("/")} className="home">
+          Home
         </a>
-        <a href="#Menu">
-          {" "}
-          <BiFoodMenu /> Menu
-        </a>
-        <a onClick={handleContact}>
-          {" "}
-          <BsTelephoneFill /> Contact
-        </a>
-      </ul>
+        <a onClick={() => navigate("/menu")}>Menu</a>
+        <a onClick={() => navigate("/contact")}>Contact</a>
 
-      <div className={style.right}>
-        <div className={style.icon}>
-          {/* <h4 onClick={() => HandleLogin()}>{btnName()}</h4> */}
-          <Popover
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-          >
-            <Typography sx={{ p: 2 }}>Log Out</Typography>
-          </Popover>
+        <h4 onClick={() => HandleLogin()}>{btnName()}</h4>
 
-          <FaShoppingCart onClick={handleClick} />
-          <div className={style.badge}>{addedElement.length}</div>
-        </div>
-        {/* <div className={style.badge}>1</div> */}
-      </div>
-    </nav>
+        <span className="icon2" onClick={() => navigate("/cart")}>
+          <FaShoppingCart />
+          <span className="badge">{addedElement.length}</span>
+        </span>
+
+        <button className="nav-btn nav-close-btn" onClick={ShowNavbar}>
+          <FaTimes />
+        </button>
+      </nav>
+      <button className="nav-btn" onClick={ShowNavbar}>
+        <FaBars />
+      </button>
+    </header>
   );
 }

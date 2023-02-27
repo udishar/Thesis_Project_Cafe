@@ -51,3 +51,29 @@ font-family: 'Gloock', serif;
     font-size: 0.8rem;
     text-align: center;
     }
+
+    @media (max-width : 611px){
+    .Services{
+       
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .features>:nth-child(2){
+        font-weight: bold;
+        font-family: 'Gloock', serif;
+        font-size: 2rem;
+        
+        }
+        .features>:nth-child(3){
+            color: rgb(174, 172, 172);
+            font-family: 'Gloock', serif;
+            word-wrap: break-word;
+            width: 12rem;
+            font-size: 1.2rem;
+            text-align: center;
+            }
+
+    }

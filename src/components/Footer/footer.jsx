@@ -12,7 +12,7 @@ export default function Footer() {
         <a href="https://twitter.com/?logout=1677083041053"><FaTwitter /></a>
       </div>
       <div className={style.head}>
-        <h1>Udisha's Flavor House</h1>
+        <h1>Flavor House</h1>
       </div>
     </div>
   );

@@ -16,8 +16,8 @@ export default function Login(){
     const[userData,setUserData]=useRecoilState(UserDetail)
     const[login,setLogin]=useRecoilState(LoggedIn)
 
-    let EmailValid=isValidEmail(email)
-    let PasswordValid=isValidPass(password)
+    // let EmailValid=isValidEmail(email)
+    // let PasswordValid=isValidPass(password)
    
     const navigate = useNavigate()
 

@@ -2,19 +2,22 @@ import React, { useEffect, useState } from "react";
 import Button from "../../molecules/customButton/button";
 import Header from "../Header/header";
 import style from "./cart.module.css";
-import { userOrder } from "../../recoil/atom";
-import { useRecoilState } from "recoil";
+import { userOrder, Payment } from "../../recoil/atom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import Footer from "../Footer/footer";
 
 export default function Cart() {
   const [order, setOrder] = useRecoilState(userOrder);
   const [netAmount, setNetAmount] = useState(0);
+  const setPayementSuccessful = useSetRecoilState(Payment);
 
+  const navigate = useNavigate();
   useEffect(() => {
     const netAmount = order?.reduce((acc, item) => acc + item?.totalAmount, 0);
     setNetAmount(netAmount);
   }, [order]);
-
-  console.log("netAmount ", netAmount);
 
   function handleRemove(cartId) {
     const filteredItem = order.filter((ele) => ele.cartId !== cartId);
@@ -38,28 +41,31 @@ export default function Cart() {
     });
   };
 
-  async function displayRazorPay() {
+  async function displayRazorPay(netAmount) {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
 
     if (!res) {
-      alert("You are offline... Failed to load Razorpay SDK");
+      Swal.fire("You are offline... Failed to load Razorpay SDK");
       return;
     }
 
     const options = {
       key: "rzp_test_VdGdvprTKB8u1w",
       currency: "INR",
-      amount: amount * 100,
+      amount: netAmount * 100,
       name: " Udisha",
       description: "Thanks for purchasing",
       image:
         "https://mern-blog-akky.herokuapp.com/static/media/logo.8c649bfa.png",
 
       handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert("Payment Successfully");
+        Swal.fire(response.razorpay_payment_id);
+        Swal.fire("Payment Successfull,Thanks for ordering ");
+        navigate("/");
+        setOrder([]);
+        setPayementSuccessful(true);
       },
       prefill: {
         name: "Udisha",
@@ -87,7 +93,29 @@ export default function Cart() {
 
                 <div className={style.container}>
                   <span>{element?.name}</span>
-                  <span> $ {element.totalAmount}</span>
+                  <span> Rs {element.totalAmount}</span>
+                  {element.category !== "pizza" ? (
+                    <span> Quantity:{element.quantity}</span>
+                  ) : (
+                    <div>
+                      <span>
+                        {" "}
+                        Small:
+                        <span className={style.small}>
+                          {element.quantityObj.small}
+                        </span>{" "}
+                        Medium:{" "}
+                        <span className={style.medium}>
+                          {element.quantityObj.medium}
+                        </span>{" "}
+                        Large:{" "}
+                        <span className={style.large}>
+                          {element.quantityObj.large}
+                        </span>
+                      </span>
+                    </div>
+                  )}
+
                   <Button
                     text="Remove"
                     onClick={() => handleRemove(element.cartId)}
@@ -101,15 +129,19 @@ export default function Cart() {
         <div className={style.div3}>
           <span>PRICE DETAILS</span>
           <div className={style.div4}>
-            <span>Price</span>
-            <span>discount</span>
-            <span>Dilevery charges</span>
+            <span>Price - {netAmount}</span>
+            <span>Dilevery charges - Free Dilevery</span>
             <span>Net Amount - {netAmount}</span>
           </div>
-          <span>Safe and secure pay</span>
-          <Button text="Check Out" onClick={() => displayRazorPay()} />
+          <span className={style.payment}>Safe and secure pay</span>
+          <Button
+            text="Check Out"
+            onClick={() => displayRazorPay(netAmount)}
+            className={style.paybtn}
+          />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

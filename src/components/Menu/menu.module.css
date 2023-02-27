@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 3rem;
     margin-top: 6rem;
-    margin-left: 2rem;
+    margin-left: 4rem;
     margin-bottom: 5rem;
     margin-right: 2rem;
    
@@ -66,4 +66,18 @@ align-items: center;
     cursor: pointer;
     transform: scale(1.1);
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+
+@media (max-width:798px){
+
+    .img{
+        width:94vw;
+        
+        position: relative;
+        overflow: hidden;
+        margin-right: 2rem;
+        border-radius: 20px;
+     } 
+
 }
