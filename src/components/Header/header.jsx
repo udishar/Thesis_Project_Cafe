@@ -4,6 +4,7 @@ import "./header.css";
 import { LoggedIn, UserDetail, userOrder } from "../../recoil/atom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export default function Header() {
   const navRef = useRef();
@@ -26,6 +27,7 @@ export default function Header() {
       setLogin(false);
     }
   }
+
   function btnName() {
     if (login) {
       return `Welcome, ${detail[0].FirstName + " " + detail[0].LastName}`;

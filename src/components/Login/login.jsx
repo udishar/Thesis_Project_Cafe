@@ -6,7 +6,6 @@ import {BiUser,BiLockAlt} from 'react-icons/bi'
 import { useNavigate } from "react-router-dom";
 import { UserDetail,LoggedIn } from "../../recoil/atom";
 import { useRecoilState } from "recoil";
-import { isValidEmail,isValidPass } from "../../helper/helper";
 import Swal from "sweetalert2";
 
 
@@ -16,8 +15,6 @@ export default function Login(){
     const[userData,setUserData]=useRecoilState(UserDetail)
     const[login,setLogin]=useRecoilState(LoggedIn)
 
-    // let EmailValid=isValidEmail(email)
-    // let PasswordValid=isValidPass(password)
    
     const navigate = useNavigate()
 
@@ -36,7 +33,7 @@ export default function Login(){
            flag=false;
            if(userData[i].Password == password){
              setLogin(true)
-             Swal.fire("Udisha's Flavour House Welcomes You")
+             Swal.fire("Flavour House Welcomes You")
              navigate("/")
              
            }
