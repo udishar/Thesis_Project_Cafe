@@ -7,7 +7,7 @@ import Service from '../Services/services'
 
 export default function Home(){
     return(
-        <div id="Home">
+        <div >
         <Header/>
       <Middle/>
       <Menu/>

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Button from "../../molecules/customButton/button";
 import Header from "../Header/header";
 import style from "./cart.module.css";
-import { userOrder, Payment } from "../../recoil/atom";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { userOrder } from "../../recoil/atom";
+import { useRecoilState } from "recoil";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer/footer";
@@ -11,7 +11,7 @@ import Footer from "../Footer/footer";
 export default function Cart() {
   const [order, setOrder] = useRecoilState(userOrder);
   const [netAmount, setNetAmount] = useState(0);
-  const setPayementSuccessful = useSetRecoilState(Payment);
+ 
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function Cart() {
         Swal.fire("Payment Successfull,Thanks for ordering ");
         navigate("/");
         setOrder([]);
-        setPayementSuccessful(true);
+        
       },
       prefill: {
         name: "Udisha",

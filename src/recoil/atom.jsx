@@ -15,11 +15,3 @@ export const userOrder = atom({
   default: [],
 });
 
-export const Payment=atom({
-  key:"Payment",
-  default:false,
-})
-export const isOpenMenu=atom({
-  key:"isOpenMenu",
-  default:false,
-})

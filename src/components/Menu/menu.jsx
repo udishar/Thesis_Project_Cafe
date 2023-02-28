@@ -2,6 +2,8 @@ import React from "react";
 import { MenuItems } from "../../constant/data";
 import style from "./menu.module.css";
 import { useNavigate } from "react-router-dom";
+import Header from "../Header/header";
+import Footer from "../Footer/footer";
 
 export default function Menu() {
   const Categories = MenuItems;
@@ -12,7 +14,10 @@ export default function Menu() {
   }
 
   return (
+    <>
+    
     <div className={style.container}>
+      
       <div className={style.heading}>
         <span>Our Menu</span>
         <span>Menu That Always</span>
@@ -30,6 +35,9 @@ export default function Menu() {
           </div>
         ))}
       </div>
+      
     </div>
+    
+    </>
   );
 }
